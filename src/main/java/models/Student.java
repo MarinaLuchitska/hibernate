@@ -15,18 +15,39 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private int age;
-    private int course;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns =  @JoinColumn(name = "course_id")
+    )
+    private List<Course> courseList;
 
-    public Student( String name, int age, int course) {
+    public Student( String name, int age) {
         this.name = name;
         this.age = age;
-        this.course = course;
+    }
+
+    public Student(String name, int age, List<Course> courseList) {
+
+        this.name = name;
+        this.age = age;
+        this.courseList = courseList;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", courseList=" + courseList +
+                '}';
     }
 }
