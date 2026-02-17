@@ -6,6 +6,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+//використовуючи hibernate:
+//– створити табличку Word (id, value)
+//– наповнити її
+//– дістати всі value слів та запакувати в List .
+
 
 import java.util.List;
 
